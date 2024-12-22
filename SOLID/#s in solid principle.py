@@ -18,3 +18,11 @@ class SalaryCalculator:
 class Database:
     def save_to_database(self, employee):
         pass
+
+
+employee = Employee("Mostafa", "Software Developer")
+salary_calculator = SalaryCalculator()
+salary = salary_calculator.calculate_salary(employee)
+print(f"The salary of {employee.name} is {salary} ")
+database = Database()
+database.save_to_database(employee)
