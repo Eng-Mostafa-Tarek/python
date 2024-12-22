@@ -1,32 +1,49 @@
-class Bird:
-    """
-    Base class for birds. Subclasses may define additional behaviors.
-    """
+from abc import ABC, abstractmethod
 
-    def make_sound(self):
-        print("Bird sound!")
-
-
-class FlyingBird(Bird):
+class FlyingAnimal(ABC):
+    @abstractmethod
     def fly(self):
-        print("Flying")
+        pass
 
+class SwimmingAnimal(ABC):
+    @abstractmethod
+    def swim(self):
+        pass
 
-class Sparrow(FlyingBird):
-    def fly(self):
-        print("Sparrow is flying")
-
-
-class Ostrich(Bird):
+class RunningAnimal(ABC):
+    @abstractmethod
     def run(self):
-        print("Ostrich is running")
+        pass
+
+class Bird(FlyingAnimal, RunningAnimal):
+    def fly(self):
+        print("Bird is flying")
+
+    def run(self):
+        print("Bird is running")
+
+class Fish(SwimmingAnimal):
+    def swim(self):
+        print("Fish is swimming")
+
+class Dog(RunningAnimal, SwimmingAnimal):
+    def run(self):
+        print("Dog is running")
+
+    def swim(self):
+        print("Dog is swimming")
 
 
-def make_bird_fly(bird: FlyingBird):
-    bird.fly()
+def make_fly(animal: FlyingAnimal):
+    animal.fly()
 
+def make_swim(animal: SwimmingAnimal):
+    animal.swim()
 
-sparrow = Sparrow()
-ostrich = Ostrich()
+bird = Bird()
+fish = Fish()
+dog = Dog()
 
-make_bird_fly(sparrow)  # This works fine.
+make_fly(bird)   
+make_swim(fish)
+make_swim(dog) 
